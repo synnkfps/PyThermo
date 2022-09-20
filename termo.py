@@ -21,8 +21,24 @@ def adicionar(string):
 
 count = 0
 
+estam = {}
+certo = {}
+
+def imprimir():
+    for j in tabela:
+        for l in j:
+            
+            if l in certo: 
+                j[certo[l]] = colorama.Fore.GREEN + l + colorama.Fore.RESET
+
+            elif l in estam:
+                j[estam[l]] = colorama.Fore.YELLOW + l + colorama.Fore.RESET
+
+        print(' | '.join(j))
+
+rand = random.choice(dicionario)
 for i in range(len(tabela)):
-    rand = random.choice(dicionario)
+    imprimir()
     print(rand)
     palavra = input('Digite uma palavra: ').lower()
     if len(palavra) != 5:
@@ -33,24 +49,15 @@ for i in range(len(tabela)):
         break
     else:
         print(f'{colorama.Fore.RED}Errou{colorama.Fore.RESET}')
-        estam = []
-
-        tabela2 = []
-
-        for i in tabela:
-            tabela2.append(' | '.join(i))
-
-        for i in tabela2:
-            print(i)
-            for j in i:
-                if j in estam:
-                    print(colorama.Fore.YELLOW + j + colorama.Fore.RESET)
-
         for j in palavra:
             if j in rand:
                 if rand.index(j) != palavra.index(j):
                     print(f'{j} está na palavra porém não neste lugar')
-                    estam.append(j)
+                    estam[j] = palavra.index(j)
+
+                if rand.index(j) == palavra.index(j):
+                    print(f'{j} está no lugar correto')
+                    certo[j] = palavra.index(j)
 
         tabela[count] = adicionar(palavra)
         if count > len(tabela):
@@ -58,4 +65,4 @@ for i in range(len(tabela)):
             break
         else:
             count += 1
-
+            
