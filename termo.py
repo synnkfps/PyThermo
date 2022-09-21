@@ -36,11 +36,26 @@ def imprimir():
 
         print(' | '.join(j))
 
+def teclado():
+    letras = 'qwertyuiop|asdfghjkl|zxcvbnm'
+    for i in letras.split('|'):
+        for j in i:
+            if j in estam:
+                #i.replace(j, colorama.Fore.YELLOW + j + colorama.Fore.RESET)
+                i = i.replace(j, colorama.Fore.YELLOW + j + colorama.Fore.RESET)
+            if j in certo:
+                i = i.replace(j, colorama.Fore.GREEN + j + colorama.Fore.RESET)
+        
+        print(i)
+    pass 
+
 rand = random.choice(dicionario)
 for i in range(len(tabela)):
     imprimir()
-    print(rand)
+    teclado()
+    #print(rand)
     palavra = input('Digite uma palavra: ').lower()
+
     if len(palavra) != 5:
         print('Palavra inválida')
 
@@ -65,4 +80,3 @@ for i in range(len(tabela)):
             break
         else:
             count += 1
-            
